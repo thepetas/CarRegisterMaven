@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>CarRegisterMaven</artifactId>
+        <groupId>org.lib</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>utils</artifactId>
+    <packaging>bundle</packaging>
+
+    <name>utils</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-Activator>utils.UtilsActivator</Bundle-Activator>
+                        <Export-Package>utils</Export-Package>
+                        <Private-Package>utils.*</Private-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    
+</project>
