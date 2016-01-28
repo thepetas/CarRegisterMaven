@@ -9,12 +9,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import integration.CarDAO;
-import model.Car;
-import model.CarId;
+import integration.RegDAO;
+import model.car.Car;
+import model.car.CarId;
 import utils.RegException;
 
-public class PostgreSQLCarDAO implements CarDAO {
+public class PostgreSQLCarDAO implements RegDAO {
     
     private PreparedStatement getAllPS;
     private PreparedStatement createBookPS;

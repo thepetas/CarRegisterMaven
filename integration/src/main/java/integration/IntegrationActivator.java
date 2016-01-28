@@ -12,10 +12,12 @@ public class IntegrationActivator implements BundleActivator {
     @Override
     public void start(BundleContext context) throws Exception {
         log.info("");
-        ServiceTracker<DAOFactory, DAOFactory> st
-                = new ServiceTracker<>(context, DAOFactory.class.getName(), null);
+        ServiceTracker<RegDAOFactory, RegDAOFactory> st
+                = new ServiceTracker<>(context, RegDAOFactory.class.getName(), null);
+        
+       
         st.open();  // !!!!!!!!
-        DAOFactory.setSt(st);
+        RegDAOFactory.setSt(st);
     }
 
     @Override

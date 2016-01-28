@@ -1,7 +1,7 @@
 package derbydb;
 
 import java.util.logging.Logger;
-import integration.DAOFactory;
+import integration.RegDAOFactory;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -12,7 +12,7 @@ public class DerbyDBActivator implements BundleActivator {
     @Override
     public void start(BundleContext context) throws Exception {
         LOG.info("");
-        context.registerService(DAOFactory.class.getName(), new DerbyDBDAOFactory(), null);
+        context.registerService(RegDAOFactory.class.getName(), new DerbyDBDAOFactory(), null);
     }
     
     @Override

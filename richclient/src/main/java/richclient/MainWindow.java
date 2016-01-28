@@ -13,23 +13,27 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import richclient.impl.CarMenu;
 import richclient.impl.CreateCarAction;
-import richclient.impl.DeleteCarAction;
+import richclient.impl.DeleteOwnerAction;
 import richclient.impl.FilesMenu;
-import richclient.impl.RefreshCarsAction;
+import richclient.impl.RefreshAction;
 import utils.Messages;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.osgi.framework.launch.Framework;
+import richclient.impl.CreateOwnerAction;
+import richclient.impl.DeleteCarAction;
+import richclient.impl.OwnerPanel;
 
 public class MainWindow extends Stage {
 
     public static MainWindow instance = new MainWindow();
 
     private BundleContext context;
-    private final MenuBar regMenuBar;
+    private final RegMenuBar regMenuBar;
     private final ToolBar regToolBar;
     private final CarPanel carPanel;
+    private final OwnerPanel ownerPanel;
 
     public void stop() {
         Bundle sb = context.getBundle(0);
@@ -50,15 +54,19 @@ public class MainWindow extends Stage {
                 stop();
             }
         });
-        regMenuBar = new MenuBar(new FilesMenu(), new CarMenu());
+        regMenuBar = new RegMenuBar();
         regToolBar = new ToolBar(
                 CreateCarAction.instance.genButton(),
                 DeleteCarAction.instance.genButton(),
-                RefreshCarsAction.instance.genButton()
+                CreateOwnerAction.instance.genButton(),
+                DeleteOwnerAction.instance.genButton(),
+                RefreshAction.instance.genButton()
         );
         carPanel = new CarPanel();
+        ownerPanel = new OwnerPanel();
+        
         VBox root = new VBox(regMenuBar, getRegToolBar(),
-                new SplitPane(carPanel));
+                new SplitPane(carPanel, ownerPanel));
         Scene s = new Scene(root, 800, 600);
         setScene(s);
         show();
@@ -78,6 +86,10 @@ public class MainWindow extends Stage {
 
     public CarPanel getCarPanel() {
         return carPanel;
+    }
+    
+    public OwnerPanel getOwnerPanel(){
+        return ownerPanel;
     }
 
     public void refresh() {

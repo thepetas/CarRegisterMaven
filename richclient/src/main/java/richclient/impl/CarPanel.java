@@ -13,8 +13,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import business.RegisterFacade;
-import model.Car;
-import model.CarId;
+import java.security.acl.Owner;
+import java.util.logging.Level;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.util.Callback;
+import model.car.Car;
+import model.car.CarId;
 import richclient.ActionsState;
 import richclient.MyAlert;
 import richclient.PersistentDateState;
@@ -30,24 +36,40 @@ public class CarPanel extends TitledPane implements Observer {
 
     private TableView<Car> createTable() {
         
+        
         TableView<Car> table = new TableView<Car>();
         
         TableColumn<Car, CarId> idCol
                 = new TableColumn<>(Id.createMess());
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         
-        TableColumn<Car, CarId> brandCol
+        TableColumn<Car, String> brandCol
                 = new TableColumn<>(Model.createMess());
         brandCol.setCellValueFactory(new PropertyValueFactory<>("brand"));
         
-        TableColumn<Car, CarId> modelCol
+        TableColumn<Car, String> modelCol
                 = new TableColumn<>(Brand.createMess());
         modelCol.setCellValueFactory(new PropertyValueFactory<>("model"));
         
-        TableColumn<Car, CarId> ownerCol
+        TableColumn<Car, String> ownerCol
                 = new TableColumn<>(Owner.createMess());
-        ownerCol.setCellValueFactory(new PropertyValueFactory<>("owner"));
+//        ownerCol.setCellValueFactory(new PropertyValueFactory<>("idOwner"));
+        ownerCol.setPrefWidth(200);
+        ownerCol.setCellValueFactory(new Callback<CellDataFeatures<Car, String>, ObservableValue<String>>() {
+
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Car, String> param) {
+                try {
+                    return new SimpleObjectProperty<>(RegisterFacade.getService().getOwner(param.getValue().getIdOwner()).getNameSurname());
+                } catch (RegException ex) {
+                    Logger.getLogger(CarPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                return null;
+            }
+        });
         
+        
+                
         table.getColumns().addAll(idCol, brandCol, modelCol, ownerCol);
         table.setItems(cars);
         table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);

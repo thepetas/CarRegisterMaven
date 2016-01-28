@@ -9,7 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import business.RegisterFacade;
-import model.car.Car;
+import model.owner.Owner;
 import richclient.AbstractCarDialog;
 import richclient.ActionsState;
 import richclient.MainWindow;
@@ -18,31 +18,31 @@ import richclient.PersistentDateState;
 import utils.RegException;
 import utils.Messages;
 
-public class DeleteCarDialog extends AbstractCarDialog {
+public class DeleteOwnerDialog extends AbstractCarDialog {
 
-    private static final Logger LOG = Logger.getLogger(DeleteCarDialog.class.getName());
+    private static final Logger LOG = Logger.getLogger(DeleteOwnerDialog.class.getName());
 
-    public DeleteCarDialog() {
-        super(Messages.Delete_car.createMess());
+    public DeleteOwnerDialog() {
+        super(Messages.Delete_owner.createMess());
     }
 
     @Override
     protected Node createContent() {
-        ListView<Car> lv = new ListView<>(MainWindow.instance.getCarPanel().selectedCars());
-        lv.setSelectionModel(new MultipleSelectionModel<Car>() {
-
-            {
+        ListView<Owner> lv = new ListView<>(MainWindow.instance.getOwnerPanel().selectedOwners());
+        lv.setSelectionModel(new MultipleSelectionModel<Owner>() {
+            
+             {
                 super.setSelectedIndex(-1);
                 super.setSelectedItem(null);
             }
 
             @Override
             public ObservableList<Integer> getSelectedIndices() {
-                return FXCollections.emptyObservableList();
+             return FXCollections.emptyObservableList();
             }
 
             @Override
-            public ObservableList<Car> getSelectedItems() {
+            public ObservableList<Owner> getSelectedItems() {
                 return FXCollections.emptyObservableList();
             }
 
@@ -63,19 +63,19 @@ public class DeleteCarDialog extends AbstractCarDialog {
             }
 
             @Override
-            public void clearAndSelect(int i) {
+            public void clearAndSelect(int index) {
             }
 
             @Override
-            public void select(int i) {
+            public void select(int index) {
             }
 
             @Override
-            public void select(Car t) {
+            public void select(Owner obj) {
             }
 
             @Override
-            public void clearSelection(int i) {
+            public void clearSelection(int index) {
             }
 
             @Override
@@ -83,7 +83,7 @@ public class DeleteCarDialog extends AbstractCarDialog {
             }
 
             @Override
-            public boolean isSelected(int i) {
+            public boolean isSelected(int index) {
                 return false;
             }
 
@@ -107,8 +107,11 @@ public class DeleteCarDialog extends AbstractCarDialog {
     @Override
     protected void ok() {
         try {
-            RegisterFacade.getService().deleteCars(
-                    new ArrayList(MainWindow.instance.getCarPanel().selectedCars()));
+            ArrayList<Owner> ow = new ArrayList<>(MainWindow.instance.getOwnerPanel().selectedOwners());
+            for (Owner ow1 : ow) {
+                RegisterFacade.getService().deleteCars(RegisterFacade.getService().getOwnersCars(ow1.getId().getId()));
+            }
+            RegisterFacade.getService().deleteOwners(ow);
             PersistentDateState.instance.dateChanged();
             ActionsState.instance.dateChanged();
         } catch (RegException ex) {

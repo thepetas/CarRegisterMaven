@@ -6,12 +6,12 @@ import richclient.AbstractCarAction;
 import richclient.PersistentDateState;
 import utils.Messages;
 
-public class RefreshCarsAction extends AbstractCarAction {
+public class RefreshAction extends AbstractCarAction {
 
-    public static RefreshCarsAction instance = new RefreshCarsAction();
+    public static RefreshAction instance = new RefreshAction();
 
-    private RefreshCarsAction() {
-        super(Messages.Refresh_Cars.createMess());
+    private RefreshAction() {
+        super(Messages.Refresh.createMess());
         Image im = new Image("https://mobileroadie.zendesk.com/hc/en-us/article_attachments/200564115/Refresh.png");
         setImageView(im);
     }

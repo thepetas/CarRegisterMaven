@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import business.RegisterFacade;
-import model.Car;
+import model.car.Car;
 import protocol.Command;
 import protocol.Logout;
 import utils.RegException;

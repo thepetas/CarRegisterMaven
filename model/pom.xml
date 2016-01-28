@@ -28,7 +28,7 @@
                 <configuration>
                     <instructions>
                         <Bundle-Activator>model.ModelActivator</Bundle-Activator>
-                        <Export-Package >model</Export-Package>
+                        <Export-Package >model,model.car,model.owner</Export-Package>
                         <Private-Package>model.*</Private-Package>
                     </instructions>
                 </configuration>

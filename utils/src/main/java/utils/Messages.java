@@ -9,17 +9,23 @@ import java.util.logging.Logger;
 public enum Messages {
 
     Brand,
+    Name,
+    Surname,
     Cars,
     Connect,
     Connected,
     Connection,
-    Create_Car,
-    Delete_Car,
+    Create_car,
+    Create_owner,
+    Delete_owner,
+    Delete_car,
     Disconnect,
     Disconnected,
     Empty_brand,
     Empty_model,
-    Empty_owner,
+    No_selected_owner,
+    Empty_name,
+    Empty_surname,
     Error,
     Exit,
     File,
@@ -32,8 +38,9 @@ public enum Messages {
     Not_connected,
     Owner,
     Port,
-    Refresh_Cars,
-    Register;
+    Refresh,
+    Register,
+    Owners;
 
     public String createMess(Object... args) {
         try {

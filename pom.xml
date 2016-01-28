@@ -23,7 +23,6 @@
         <module>proxy</module>
         <module>connection</module>
         <module>server</module>
-        <module>postgresqlDB</module>
     </modules>
     
     <dependencies>

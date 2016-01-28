@@ -1,4 +1,4 @@
-package model;
+package model.car;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -6,22 +6,15 @@ import java.util.Objects;
 public class Car implements Serializable {
 
     private CarId id;
-    private String owner;
     private String brand;
     private String model;
+    private int idOwner;
 
-    public Car(CarId id, String title, String author) {
+    public Car(CarId id, String brand, String model, int idOwner) {
         this.id = id;
-        this.owner = title;
-        this.brand = author;
-        this.model = " ";
-    }
-    
-    public Car(CarId id, String brand, String model, String owner) {
-        this.id = id;
-        this.owner = owner;
         this.brand = brand;
         this.model = model;
+        this.idOwner = idOwner;
     }
 
     public Car() {
@@ -30,9 +23,9 @@ public class Car implements Serializable {
     public CarId getId() {
         return id;
     }
-
-    public String getOwner() {
-        return owner;
+    
+    public int getIdOwner(){
+        return idOwner;
     }
 
     public String getBrand() {
@@ -53,7 +46,7 @@ public class Car implements Serializable {
 
     @Override
     public String toString() {
-        return "[" + id + "] " + brand + " " + model + ": " + owner;
+        return "[" + id + "] " + brand + " " + model + "(" + idOwner + ")";
     }
 
     @Override

@@ -10,7 +10,7 @@ public class DeleteCarAction extends AbstractCarAction {
     public static DeleteCarAction instance = new DeleteCarAction();
 
     private DeleteCarAction() {
-        super(Messages.Delete_Car.createMess());
+        super(Messages.Delete_car.createMess());
     }
 
     @Override

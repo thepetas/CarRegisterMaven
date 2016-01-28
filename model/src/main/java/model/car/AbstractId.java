@@ -1,4 +1,4 @@
-package model;
+package model.car;
 
 import java.io.Serializable;
 

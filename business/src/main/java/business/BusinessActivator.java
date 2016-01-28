@@ -12,10 +12,11 @@ public class BusinessActivator implements BundleActivator {
     @Override
     public void start(BundleContext context) throws Exception {
         LOG.info("");
-        ServiceTracker<RegisterFacade, RegisterFacade> st
+        ServiceTracker<RegisterFacade, RegisterFacade> stCar
                 = new ServiceTracker<>(context, RegisterFacade.class, null);
-        st.open();
-        RegisterFacade.setSt(st);
+        
+        stCar.open();
+        RegisterFacade.setSt(stCar);
     }
 
     @Override

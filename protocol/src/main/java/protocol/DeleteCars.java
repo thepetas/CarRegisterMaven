@@ -2,7 +2,7 @@ package protocol;
 
 import java.util.Collection;
 import business.RegisterFacade;
-import model.Car;
+import model.car.Car;
 import utils.RegException;
 
 public class DeleteCars extends Command {

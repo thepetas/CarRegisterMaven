@@ -4,17 +4,17 @@ import business.RegisterFacade;
 import richclient.AbstractCarAction;
 import utils.Messages;
 
-public class CreateCarAction extends AbstractCarAction {
+public class CreateOwnerAction extends AbstractCarAction {
 
-    public static CreateCarAction instance = new CreateCarAction();
+    public static CreateOwnerAction instance = new CreateOwnerAction();
 
-    private CreateCarAction() {
-        super(Messages.Create_car.createMess());
+    private CreateOwnerAction() {
+        super(Messages.Create_owner.createMess());
     }
 
     @Override
     public void execute() {
-        new CreateCarDialog().execute();
+        new CreateOwnerDialog().execute();
     }
 
     @Override
