@@ -1,1 +1,1 @@
-# mvn-osgi-library-2015
+# CarRegisterMaven project
